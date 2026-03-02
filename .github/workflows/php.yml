@@ -1,39 +1,42 @@
-name: PHP Composer
+name: PHP CI
 
 on:
   push:
-    branches: [ "main" ]
+    branches: ["main"]
   pull_request:
-    branches: [ "main" ]
+    branches: ["main"]
+  workflow_dispatch:
 
 permissions:
   contents: read
 
 jobs:
-  build:
-
+  php-syntax-check:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-    - name: Validate composer.json and composer.lock
-      run: composer validate --strict
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.1'
+          coverage: none
 
-    - name: Cache Composer packages
-      id: composer-cache
-      uses: actions/cache@v3
-      with:
-        path: vendor
-        key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
-        restore-keys: |
-          ${{ runner.os }}-php-
+      - name: Lint PHP files
+        run: |
+          set -e
+          mapfile -t files < <(find . -type f -name "*.php" \
+            -not -path "./vendor/*" \
+            -not -path "./asset/vendor/*" \
+            -not -path "./assets/vendor/*")
 
-    - name: Install dependencies
-      run: composer install --prefer-dist --no-progress
+          if [ ${#files[@]} -eq 0 ]; then
+            echo "No PHP files found to lint."
+            exit 0
+          fi
 
-    # Add a test script to composer.json, for instance: "test": "vendor/bin/phpunit"
-    # Docs: https://getcomposer.org/doc/articles/scripts.md
-
-    # - name: Run test suite
-    #   run: composer run-script test
+          for file in "${files[@]}"; do
+            php -l "$file"
+          done
