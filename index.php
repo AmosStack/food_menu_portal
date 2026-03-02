@@ -34,6 +34,7 @@
 
   <!-- Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
+  <link href="assets/css/page-transition.css" rel="stylesheet">
 
 
   <style>
@@ -70,7 +71,7 @@
   <header id="header" class="d-flex align-items-center">
     <div class="container d-flex align-items-center justify-content-between">
 
-      <h1 class="logo"><a href="index.html">Food Menu And Pricing Portal<span>.</span></a></h1>
+      <h1 class="logo"><a href="index.html">Food Menu And Price Portal<span>.</span></a></h1>
       <!-- Uncomment below if you prefer to use an image logo -->
       <!-- <a href="index.html" class="logo"><img src="assets/img/logo.png" alt=""></a>-->
 
@@ -92,7 +93,7 @@
   <section id="hero" class="d-flex align-items-center">
     <div class="container" data-aos="zoom-out" data-aos-delay="100">
     <center>
-    <h1>Welcome to Ardhi University <span>Food Menu and Pricing </span> Portal.</h1>
+    <h1>Welcome to Ardhi University <span>Food Menu and Price </span> Portal.</h1>
       <h2>Best taste for your soul</h2>
       <p>Explore a world of culinary delights with our Food Menus. Whether you're a food enthusiast or a restaurant owner, our platform is designed to enhance your dining experience. Discover a diverse range of dishes, from savory classics to innovative creations, curated to satisfy every palate. Join us on a gastronomic journey where flavor meets convenience, and let Food Menu redefine the way you experience food.</p>
     </center>
@@ -159,6 +160,7 @@
 
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
+  <script src="assets/js/page-transition.js"></script>
 
 </body>
 

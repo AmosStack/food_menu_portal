@@ -11,6 +11,7 @@ include 'header.php';
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="assets/css/page-transition.css">
 	<title>
 		<link rel="stylesheet" href="simple-bar.css">
 		<style>
@@ -44,7 +45,7 @@ include 'header.php';
 					<div class="col-md-3">
 						<div class="panel panel-info">
 							<div class="panel-heading">
-								<h3 class="panel-title"> <a href="admin1.php">
+								<h3 class="panel-title"> <a href="addrestaurant.php">
 									<span class="glyphicon glyphicon" aria-hidden="true"></span>New Restaurant</a>
 								
 								</h3>
@@ -55,7 +56,7 @@ include 'header.php';
 					<div class="col-md-3">
 						<div class="panel panel-info">
 							<div class="panel-heading">
-								<h3 class="panel-title"> <a href="admin.php">
+								<h3 class="panel-title"> <a href="admenu.php">
 									<span class="glyphicon glyphicon" aria-hidden="true"></span>New Menu</a>
 							</div>
 							
@@ -127,6 +128,7 @@ include 'header.php';
 	</div>
 
 	</body>
+	<script src="assets/js/page-transition.js"></script>
 	
 </html>
 

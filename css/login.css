@@ -1,0 +1,28 @@
+.minor{
+    margin-left: 400px;
+    margin-top: 100px;
+    border-style: groove;
+    height: 300px;
+    width: 300px;
+    border-radius: 30px;
+    padding-left: 50px;
+    padding-top: 30px;
+    background-color: rgba(145, 143, 144, 0.404);
+
+}
+body{
+    /* background-color: aquamarine; */
+    background-image: url(../image/home6.jpg);
+    background-size: cover;
+}
+#gm{
+    height: 20px;
+    width: 250px;
+    border-radius: 20px;
+}
+.submit{
+    height: 25px;
+    width: 250px;
+    border-radius: 10px;
+
+}

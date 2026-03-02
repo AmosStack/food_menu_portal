@@ -1,5 +1,7 @@
 <?php
 session_start();
+$googleOAuthConfig = include __DIR__ . '/google-oauth-config.php';
+$googleClientId = trim($googleOAuthConfig['google_client_id'] ?? '');
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -10,6 +12,7 @@ session_start();
   <title>Login | Food Menu and Pricing Portal | Ardhi</title>
   <link rel="stylesheet" href="css/style1.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="assets/css/page-transition.css">
 
   <style>
     body{
@@ -72,7 +75,7 @@ session_start();
 
         ?>
 
-        <header>Login</header>
+        <header> UserLogin</header>
         <hr>
         <form action="#" method="POST">
 
@@ -93,17 +96,29 @@ session_start();
             <div class="remember">
               <input type="checkbox" class="check" name="remember_me">
               <label for="remember">Remember me</label>
-              <span><a href="edit.php">Forgot password</a></span>
+              <span><a href="forgot-password.php">Forgot password</a></span>
             </div>
 
           </div>
 
 
           <center><input type="submit" name="login" id="submit" value="login" class="btn"></center>
-          
+          <center style="margin-top: 10px;">
+            <?php if ($googleClientId !== ''): ?>
+              <div id="g_id_onload"
+                data-client_id="<?= htmlspecialchars($googleClientId) ?>"
+                data-callback="handleGoogleCredential"
+                data-auto_prompt="false">
+              </div>
+              <div class="g_id_signin" data-type="standard" data-size="large" data-theme="outline" data-text="signin_with" data-shape="rectangular" data-logo_alignment="left"></div>
+            <?php else: ?>
+              <small>Google sign-in is not configured yet.</small>
+            <?php endif; ?>
+          </center>
 
           <div class="links">
-            Don't have an account? <a href="signup.php">Signup Now</a>
+            Don't have an account? <a href="signup.php">Signup Now</a></br>
+            <a href="index.php">Home</a>
           </div>
 
         </form>
@@ -123,7 +138,32 @@ session_start();
         input.type = "password";
       }
     })
+
+    async function handleGoogleCredential(response) {
+      try {
+        const request = await fetch("google-login.php", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({ credential: response.credential })
+        });
+
+        const result = await request.json();
+
+        if (result.success) {
+          window.location.href = result.redirect || "userpage.php";
+          return;
+        }
+
+        alert(result.message || "Google login failed.");
+      } catch (error) {
+        alert("Google login failed. Please try again.");
+      }
+    }
   </script>
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
+  <script src="assets/js/page-transition.js"></script>
 </body>
 
 </html>

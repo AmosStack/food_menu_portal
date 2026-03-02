@@ -14,6 +14,7 @@
      <!-- Custom CSS -->
     <link href="assets/css/simple-sidebar.css" rel="stylesheet">
     <link href="assets/css/dataTables.bootstrap.min.css" rel="stylesheet">
+    <link href="assets/css/page-transition.css" rel="stylesheet">
     
 
 

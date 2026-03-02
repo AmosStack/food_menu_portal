@@ -6,6 +6,7 @@
         <title>Food Menu and Pricing Portal | Ardhi</title>
         <link rel="icon" type="image/jpg" sizes="32x32" href="img/icn.jpg">
         <link rel="stylesheet" href="css/header.css">
+        <link rel="stylesheet" href="assets/css/page-transition.css">
     </head>
     <body>
 
@@ -20,6 +21,8 @@
             </nav>
             </header>
             </div>
+
+            <script src="assets/js/page-transition.js"></script>
 
             </body>
             </html>

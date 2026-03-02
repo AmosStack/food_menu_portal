@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact Form - Food Menu and Pricing Portal | Ardhi</title>
     <link rel="stylesheet" href="css/style1.css">
+    <link rel="stylesheet" href="assets/css/page-transition.css">
 </head>
 
 <body>
@@ -46,6 +47,7 @@
 
         </div>
     </div>
+    <script src="assets/js/page-transition.js"></script>
 </body>
 
 </html>

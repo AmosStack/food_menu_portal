@@ -1,0 +1,26 @@
+.minor{
+    margin-left: 400px;
+    margin-top: 10px;
+    height: 480px;
+    width: 350px;
+    border-style: groove;
+    padding-left: 80px;
+    padding-top: 20px;
+    background-color: rgba(185, 179, 190, 0.205);
+    border-radius: 15px;
+}
+#fn{
+   height: 30px;
+   width: 250px; 
+   border-radius: 5px;
+}
+.sb{
+    height: 30px;
+    width: 250px;
+    border-radius: 5px;
+    background-color: rgb(190, 211, 95);
+
+}
+body{
+    background-image: url(img/food1.jpg);
+}

@@ -10,6 +10,7 @@ session_start();
   <title>adminLogin - Food Menu and Pricing Portal | Ardhi</title>
   <link rel="stylesheet" href="css/style1.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="assets/css/page-transition.css">
   <style>
     body{
       background-image: url('images/background.jpg');
@@ -53,7 +54,7 @@ session_start();
                     <p>Wrong Password</p>
                     </div><br>";
 
-            echo "<a href='login.php'><button class='btn'>Go Back</button></a>";
+            echo "<a href='adminlogin.php'><button class='btn'>Go Back</button></a>";
           }
 
         } else {
@@ -61,7 +62,7 @@ session_start();
                     <p>Wrong Email or Password</p>
                     </div><br>";
 
-          echo "<a href='login.php'><button class='btn'>Go Back</button></a>";
+          echo "<a href='adminlogin.php'><button class='btn'>Go Back</button></a>";
 
         }
 
@@ -92,15 +93,15 @@ session_start();
             <div class="remember">
               <input type="checkbox" class="check" name="remember_me">
               <label for="remember">Remember me</label>
-              <span><a href="forgot.php">Forgot password</a></span>
+              <span><a href="forgot-password.php">Forgot password</a></span>
             </div>
 
           </div>
 
 
 
-          <center><input type="submit" name="login" id="submit" value="Login" class="btn"></center>
-
+          <center><input type="submit" name="login" id="submit" value="Login" class="btn"></center></br>
+          <a href="index.php">Home</a>
           
 
         </form>
@@ -121,6 +122,7 @@ session_start();
       }
     })
   </script>
+  <script src="assets/js/page-transition.js"></script>
 </body>
 
 </html>

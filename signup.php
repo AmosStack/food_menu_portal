@@ -8,6 +8,7 @@
   <title>Register | Food Menu and Pricing Portal | Ardhi</title>
   <link rel="stylesheet" href="css/style1.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="assets/css/page-transition.css">
   <style>
     body{
       background-image: url('images/background.jpg');
@@ -148,6 +149,7 @@
       }
     })
   </script>
+  <script src="assets/js/page-transition.js"></script>
 </body>
 
 </html>
