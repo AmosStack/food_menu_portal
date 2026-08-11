@@ -1,5 +1,45 @@
 <?php
 session_start();
+include "connection.php";
+
+$message = "";
+
+if (isset($_POST['login'])) {
+  $email = $_POST['email'];
+  $pass = $_POST['password'];
+
+  $stmt = $conn->prepare("SELECT * FROM tbl_admin WHERE email = ?");
+  $stmt->bind_param("s", $email);
+  $stmt->execute();
+  $res = $stmt->get_result();
+
+  if ($res->num_rows > 0) {
+    $row = $res->fetch_assoc();
+    $storedPassword = $row['password'];
+    $isHashedPassword = password_get_info($storedPassword)['algo'] !== null;
+    $passwordMatches = $isHashedPassword
+      ? password_verify($pass, $storedPassword)
+      : hash_equals($storedPassword, $pass);
+
+    if ($passwordMatches) {
+      if (!$isHashedPassword) {
+        $hashedPassword = password_hash($pass, PASSWORD_DEFAULT);
+        $updateStmt = $conn->prepare("UPDATE tbl_admin SET password = ? WHERE id = ?");
+        $updateStmt->bind_param("si", $hashedPassword, $row['id']);
+        $updateStmt->execute();
+      }
+
+      $_SESSION['id'] = $row['id'];
+      $_SESSION['username'] = $row['username'];
+      header("location: adminpage.php");
+      exit;
+    }
+
+    $message = "Wrong Password";
+  } else {
+    $message = "Wrong Email or Password";
+  }
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -23,54 +63,10 @@ session_start();
     <div class="form-box box">
 
       <?php
-      include "conn/conn.php";
-
-      if (isset($_POST['login'])) {
-
-        $email = $_POST['email'];
-        $pass = $_POST['password'];
-
-        $sql = "select * from tbl_admin where email='$email'";
-
-        $res = mysqli_query($conn, $sql);
-
-        if (mysqli_num_rows($res) > 0) {
-
-          $row = mysqli_fetch_assoc($res);
-
-          $password = $row['password'];
-
-          $decrypt = password_verify($pass, $password);
-
-
-          if ($decrypt) {
-            $_SESSION['id'] = $row['id'];
-            $_SESSION['username'] = $row['username'];
-            header("location: adminpage.php");
-
-
-          } else {
-            echo "<div class='message'>
-                    <p>Wrong Password</p>
-                    </div><br>";
-
-            echo "<a href='adminlogin.php'><button class='btn'>Go Back</button></a>";
-          }
-
-        } else {
-          echo "<div class='message'>
-                    <p>Wrong Email or Password</p>
-                    </div><br>";
-
-          echo "<a href='adminlogin.php'><button class='btn'>Go Back</button></a>";
-
-        }
-
-
-      } else {
-
-
-        ?>
+      if ($message !== "") {
+        echo "<div class='message'><p>" . htmlspecialchars($message) . "</p></div><br>";
+      }
+      ?>
 
         <header>Admin Login</header>
         <hr>
@@ -107,7 +103,6 @@ session_start();
         </form>
       </div>
       <?php
-      }
       ?>
   </div>
   <script>
