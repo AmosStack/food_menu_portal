@@ -178,4 +178,4 @@ CREATE TABLE IF NOT EXISTS `tbl_users` (
 --
 
 INSERT INTO `tbl_users` (`id`, `username`, `email`, `password`) VALUES
-(6, 'xxx', 'xxx@xxx.com', '$2y$10$Tk27ZbolltrBZ6ijQdhV3OkIQzFlgWFeO2vwbrapwmMf14M1RqJwe');
+(6, 'xxx', 'xxx@xxx.com', 'xxxxxxxx');
